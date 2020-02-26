@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:async';
-
+import 'package:transparent_image/transparent_image.dart';
 
 
 void main() {
@@ -115,9 +115,13 @@ class _HomePageState extends State<HomePage> {
             if(_search == null || index < snapshot.data["data"].length)
             return GestureDetector//para clicar na imagem
               (
-              child:Image.network(snapshot.data["data"][index]["images"]["fixes_height"]["url"]
-                                 height: 300.0,
-                                 fit:Boxfit.cover,),
+              child: FadeInImage.memoryNetwork(
+                  placeholder: kTransparentImage,  
+                  image: snapshot.data["data"][index]["images"]["fixes_height"]["url"],
+                  height: 300.0,
+                  fit: Boxfit.cover,
+                
+              ),// faz a imagem entrar na tela de modo mais suave
               );
             else 
               return Container(
